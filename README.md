@@ -1,6 +1,7 @@
 ### Build
 
 ```
+cd docker
 docker build -t alpine-rust-cn .
 ```
 
