@@ -1,20 +1,32 @@
-### Build
+### Usage
+
+
+
+#### alpine
+
+**Build**
 
 ```
-cd docker
+cd alpine
 docker build -t alpine-rust-cn .
 ```
 
-### Run Sample
+**Run Test**
 
 ```
-cd ~/Desktop
-cargo new myapp
-docker run -it -v ~/Desktop/myapp/:/volume/ --rm alpine-rust-cn cargo run
+cd alpine-test
+
+cd helloworld
+cargo clean
+docker run -it -v ${PWD}:/volume/ --rm alpine-rust-cn cargo run --release
+docker run -it -v ${PWD}:/volume/ --rm alpine-rust-cn cargo run --release --target x86_64-unknown-linux-musl
 ```
 
-输出结果:
 
-```
-Hello, world!
-```
+**注意**: 使用 alpine-rust-cn 编译出来的可执行文件经常会出问题, 请**谨慎**使用
+
+
+### References
+
+<a href="https://github.com/clux/muslrust" target="_blank">https://github.com/clux/muslrust</a>   
+<a href="https://wiki.ubuntu.com/Releases" target="_blank">https://wiki.ubuntu.com/Releases</a>    
