@@ -1,5 +1,5 @@
 [source.crates-io]
-replace-with = "ustc"
+replace-with = "rustcc"
 
 [source.rustcc]
 registry = "git://crates.rustcc.cn/crates.io-index"

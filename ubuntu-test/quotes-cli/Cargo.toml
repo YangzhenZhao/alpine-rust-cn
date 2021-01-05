@@ -1,0 +1,12 @@
+[package]
+name = "quotes-cli"
+version = "0.1.0"
+authors = ["zhaoyz <954241552@qq.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+quotes = "0.1.2"
+async-std = { version = "1.8.0", features = ["attributes"] }
+clap = "2.33.3"
