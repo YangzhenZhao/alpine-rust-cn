@@ -1,17 +1,21 @@
 FROM alpine:3.12
 LABEL maintainer="nocilantro <954241552@qq.com>"
 
-RUN sed -i "s/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g" /etc/apk/repositories && \
-    apk update && apk add --no-cache \
-    ca-certificates musl-dev musl file make curl \
+RUN sed -i "s/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g" /etc/apk/repositories \
+    && apk update && apk add --no-cache \
+    tzdata ca-certificates musl-dev musl file make curl \
     gcc g++ git openssh-client pkgconfig openssl openssl-dev \
-    libressl-dev autoconf automake libtool libzmq && \
-    rm -rf /var/cache/apk/*
+    libressl-dev autoconf automake libtool libzmq \
+    && rm -rf /var/cache/apk/* \
+    && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo "Asia/Shanghai" > /etc/timezone
 
 ENV PATH=/root/.cargo/bin:$PATH \
     RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static \
     RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup \
-    CARGO_HTTP_MULTIPLEXING=false
+    CARGO_HTTP_MULTIPLEXING=false \
+    TZ=Asia/Shanghai \
+    LANG=C.UTF-8
 
 RUN set -eux; \
     rustArch='x86_64-unknown-linux-musl'; \
